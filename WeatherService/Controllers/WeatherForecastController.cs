@@ -4,6 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WeatherService.Base;
+using WeatherService.MapView;
+using WeatherService.OpenWeather;
+using WeatherService.OpenWeather.Classes;
+using WeatherService.OpenWeather.MapView;
 
 namespace WeatherService.Controllers
 {
@@ -24,18 +29,18 @@ namespace WeatherService.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<WeatherDataView> Get()
         {
-			
-
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
-        }
+			var forecastProvider = new ForecastProvider(
+				AppSettings.Settings.WeatherService.Units,
+				AppSettings.Settings.WeatherService.AppId
+			);
+			var data = await forecastProvider.GetWeather(
+				AppSettings.Settings.WeatherService.Latitude,
+				AppSettings.Settings.WeatherService.Longitude
+			);
+			var mapper = new ViewMapper();
+			return mapper.Map(data);
+		}
     }
 }
