@@ -91,7 +91,12 @@ namespace WeatherService.OpenWeather.MapView
 		public decimal ProbabilityOfPrecipitation { get; set; }
 
 		[JsonPropertyName("rain")]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		public RainView Rain { get; set; }
+
+		[JsonPropertyName("snow")]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+		public SnowView Snow { get; set; }
 	}
 
 	public class MinutelyView {
@@ -103,6 +108,8 @@ namespace WeatherService.OpenWeather.MapView
 	}    
 
 	public class RainView: Dictionary<string, decimal> {}
+
+	public class SnowView: Dictionary<string, decimal> {}
 
 	// public class HourlyView    {
 	// 	[JsonPropertyName("dt")]
@@ -161,25 +168,25 @@ namespace WeatherService.OpenWeather.MapView
 		[JsonPropertyName("night")]
 		public decimal Night { get; set; }
 
-		[JsonPropertyName("eve")]
-		public decimal Eve { get; set; }
+		[JsonPropertyName("evening")]
+		public decimal Evening { get; set; }
 
-		[JsonPropertyName("morn")] 
-		public decimal Morn { get; set; } 
+		[JsonPropertyName("morning")] 
+		public decimal Morning { get; set; } 
 	}
 
  	public class DailyView    {
-		[JsonPropertyName("dt")]
-		public int Dt { get; set; }
+		[JsonPropertyName("date")]
+		public DateTime Date { get; set; }
 
 		[JsonPropertyName("sunrise")]
-		public int Sunrise { get; set; }
+		public DateTime Sunrise { get; set; }
 
 		[JsonPropertyName("sunset")]
-		public int Sunset { get; set; }
+		public DateTime Sunset { get; set; }
 
-		[JsonPropertyName("temp")]
-		public TemperatureView Temp { get; set; }
+		[JsonPropertyName("temperature")]
+		public TemperatureView Temperature { get; set; }
 
 		[JsonPropertyName("feels_like")]
 		public TemperatureView FeelsLike { get; set; }
@@ -193,28 +200,31 @@ namespace WeatherService.OpenWeather.MapView
 		[JsonPropertyName("dew_point")]
 		public decimal DewPoint { get; set; }
 
-		[JsonPropertyName("wind_speed")]
-		public decimal WindSpeed { get; set; }
+		[JsonPropertyName("wind_speed_meters")]
+		public decimal WindSpeedMeters { get; set; }
 
-		[JsonPropertyName("wind_deg")]
-		public int WindDeg { get; set; }
+		[JsonPropertyName("wind_gust")]
+		public decimal WindGust { get; set; }
+
+		[JsonPropertyName("wind_degrees")]
+		public int WindDegrees { get; set; }
 
 		[JsonPropertyName("weather")]
-		public List<WeatherView> Weather { get; set; }
+		public ICollection<WeatherView> Weather { get; set; }
 
-		[JsonPropertyName("clouds")]
-		public int Clouds { get; set; } 
+		[JsonPropertyName("clouds_percents")]
+		public int CloudsPercents { get; set; } 
 		
-		[JsonPropertyName("pop")]
-		public decimal Pop { get; set; }
+		[JsonPropertyName("probability_of_precipitation")]
+		public decimal ProbabilityOfPrecipitation { get; set; }
 
 		[JsonPropertyName("uvi")] 
 		public decimal Uvi { get; set; } 
 		
-		[JsonPropertyName("rain")]
-		public decimal? Rain { get; set; }
+		[JsonPropertyName("rain_volume_mm")]
+		public decimal? RainVolume { get; set; }
 
-		[JsonPropertyName("snow")] 
-		public decimal? Snow { get; set; } 
+		[JsonPropertyName("snow_volume_mm")] 
+		public decimal? SnowVolume { get; set; }
 	}   
 }

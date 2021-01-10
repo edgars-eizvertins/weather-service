@@ -92,6 +92,9 @@ namespace WeatherService.OpenWeather.Classes
 
 		[JsonPropertyName("rain")]
 		public Rain Rain { get; set; } 
+
+		[JsonPropertyName("snow")]
+		public Snow Snow { get; set; } 
 	}
 
 	public class Minutely    {
@@ -103,6 +106,8 @@ namespace WeatherService.OpenWeather.Classes
 	}    
 
 	public class Rain: Dictionary<string, decimal> {}
+
+	public class Snow: Dictionary<string, decimal> {}
 
 	// public class Hourly    {
 	// 	[JsonPropertyName("dt")]
@@ -203,11 +208,14 @@ namespace WeatherService.OpenWeather.Classes
 		[JsonPropertyName("wind_speed")]
 		public decimal WindSpeed { get; set; }
 
+		[JsonPropertyName("wind_gust")]
+		public decimal WindGust { get; set; }
+
 		[JsonPropertyName("wind_deg")]
 		public int WindDeg { get; set; }
 
 		[JsonPropertyName("weather")]
-		public List<Weather> weather { get; set; }
+		public List<Weather> Weather { get; set; }
 
 		[JsonPropertyName("clouds")]
 		public int Clouds { get; set; } 

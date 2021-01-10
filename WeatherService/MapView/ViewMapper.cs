@@ -17,7 +17,49 @@ namespace WeatherService.MapView
 				TimezoneOffset = data.TimezoneOffset,
 				Current = MapWeatherInfo(data.Current),
 				Minutely = MapMinutely(data.Minutely),
-				Hourly = MapHourly(data.Hourly)
+				Hourly = MapHourly(data.Hourly),
+				Daily = MapDaily(data.Daily)
+			};
+		}
+
+		private ICollection<DailyView> MapDaily(ICollection<Daily> daily)
+		{
+			return daily.Select(f => MapDaily(f)).ToArray();
+		}
+
+		private DailyView MapDaily(Daily daily)
+		{
+			return new DailyView {
+				Date = GetTime(daily.Dt),
+				Sunrise = GetTime(daily.Sunrise),
+				Sunset = GetTime(daily.Sunset),
+				Temperature = MapTemperature(daily.Temp),
+				FeelsLike = MapTemperature(daily.FeelsLike),
+				Pressure = daily.Pressure,
+				Humidity = daily.Humidity,
+				DewPoint = daily.DewPoint,
+				WindSpeedMeters = daily.WindSpeed,
+				WindGust = daily.WindGust,
+				WindDegrees = daily.WindDeg,
+				CloudsPercents = daily.Clouds,
+				Uvi = daily.Uvi,
+				ProbabilityOfPrecipitation = daily.Pop,
+				RainVolume = daily.Rain,
+				SnowVolume = daily.Snow,
+				Weather = MapWeather(daily.Weather)
+				
+			};
+		}
+
+		private TemperatureView MapTemperature(Temperature temperature)
+		{
+			return new TemperatureView {
+				Morning = temperature.Morn,
+				Day = temperature.Day,
+				Evening = temperature.Eve,
+				Night = temperature.Night,
+				Min = temperature.Min,
+				Max = temperature.Max
 			};
 		}
 
@@ -55,13 +97,21 @@ namespace WeatherService.MapView
 				WindDegrees = current.WindDeg,
 				Weather = MapWeather(current.Weather),
 				ProbabilityOfPrecipitation = current.Pop,
-				Rain = MapRain(current.Rain)
+				Rain = MapPrecipitation<RainView>(current.Rain),
+				Snow = MapPrecipitation<SnowView>(current.Snow)
 			};
 		}
 
-		private RainView MapRain(Rain rain)
+		private T MapPrecipitation<T>(Dictionary<string, decimal> percipations) where T: Dictionary<string, decimal>, new()
 		{
-			throw new NotImplementedException();
+			var result = new T();
+			if (percipations == null)
+				return null;
+
+			foreach (var element in percipations) {
+				result[element.Key] = element.Value;
+			}
+			return result;
 		}
 
 		private ICollection<WeatherView> MapWeather(List<Weather> weather)
