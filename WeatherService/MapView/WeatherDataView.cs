@@ -27,7 +27,29 @@ namespace WeatherService.OpenWeather.MapView
 		public ICollection<WeatherInfoView> Hourly { get; set; }
 		
 		[JsonPropertyName("daily")]
-		public ICollection<DailyView> Daily { get; set; } 
+		public ICollection<DailyView> Daily { get; set; }
+
+		[JsonPropertyName("alerts")]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+		public ICollection<AlertView> Alerts { get; set; } 
+	}
+
+	public class AlertView
+	{
+		[JsonPropertyName("sender_name")]
+		public string SenderName { get; set; }
+
+		[JsonPropertyName("event")]
+		public string Event { get; set; }
+
+		[JsonPropertyName("start")]
+		public DateTime Start { get; set; }
+
+		[JsonPropertyName("end")]
+		public DateTime End {get; set; }
+
+		[JsonPropertyName("description")]
+		public string Description {get; set; }
 	}
 
 	// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
@@ -222,9 +244,11 @@ namespace WeatherService.OpenWeather.MapView
 		public decimal Uvi { get; set; } 
 		
 		[JsonPropertyName("rain_volume_mm")]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		public decimal? RainVolume { get; set; }
 
-		[JsonPropertyName("snow_volume_mm")] 
+		[JsonPropertyName("snow_volume_mm")]
+		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
 		public decimal? SnowVolume { get; set; }
 	}   
 }

@@ -18,7 +18,27 @@ namespace WeatherService.MapView
 				Current = MapWeatherInfo(data.Current),
 				Minutely = MapMinutely(data.Minutely),
 				Hourly = MapHourly(data.Hourly),
-				Daily = MapDaily(data.Daily)
+				Daily = MapDaily(data.Daily),
+				Alerts = MapAlerts(data.Alerts)
+			};
+		}
+
+		private ICollection<AlertView> MapAlerts(ICollection<Alert> alerts)
+		{
+			return alerts.Select(f => MapAlert(f)).ToArray();
+		}
+
+		private AlertView MapAlert(Alert alert)
+		{
+			if (alert == null)
+				return null;
+
+			return new AlertView {
+				SenderName = alert.SenderName,
+				Event = alert.Event,
+				Start = GetTime(alert.Start),
+				End = GetTime(alert.End),
+				Description = alert.Description
 			};
 		}
 
@@ -47,7 +67,6 @@ namespace WeatherService.MapView
 				RainVolume = daily.Rain,
 				SnowVolume = daily.Snow,
 				Weather = MapWeather(daily.Weather)
-				
 			};
 		}
 

@@ -26,7 +26,28 @@ namespace WeatherService.OpenWeather.Classes
 		public List<WeatherInfo> Hourly { get; set; }
 		
 		[JsonPropertyName("daily")]
-		public List<Daily> Daily { get; set; } 
+		public List<Daily> Daily { get; set; }
+
+		[JsonPropertyName("alerts")]
+		public ICollection<Alert> Alerts { get; set; }
+	}
+
+	public class Alert
+	{
+		[JsonPropertyName("sender_name")]
+		public string SenderName { get; set; }
+
+		[JsonPropertyName("event")]
+		public string Event { get; set; }
+
+		[JsonPropertyName("start")]
+		public int Start { get; set; }
+
+		[JsonPropertyName("end")]
+		public int End {get; set; }
+
+		[JsonPropertyName("description")]
+		public string Description {get; set; }
 	}
 
 	// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
