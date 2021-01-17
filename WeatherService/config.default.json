@@ -1,5 +1,10 @@
 {
 	"WeatherService": {
-		"AppId": ""
+		"Port": "1984",
+		"ApiUrl": "https://api.openweathermap.org/data/2.5/",
+		"AppId": "",
+		"Units": "metric",
+		"Latitude": 56.90,
+		"Longitude": 24.20
 	}
 }

@@ -25,6 +25,7 @@ namespace WeatherService.Base
 
 	public class WeatherService
 	{
+		public string Port { get; set; }
 		public string AppId { get; set; }
 		public string ApiUrl { get; set; }
 		public string Units { get; set; }
