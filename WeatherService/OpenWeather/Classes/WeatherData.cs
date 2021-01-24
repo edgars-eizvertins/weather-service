@@ -123,7 +123,7 @@ namespace WeatherService.OpenWeather.Classes
 		public int Dt { get; set; }
 
 		[JsonPropertyName("precipitation")]
-		public int Precipitation { get; set; } 
+		public decimal Precipitation { get; set; } 
 	}    
 
 	public class Rain: Dictionary<string, decimal> {}

@@ -73,13 +73,18 @@ namespace WeatherService.MapView
 		private TemperatureView MapTemperature(Temperature temperature)
 		{
 			return new TemperatureView {
-				Morning = temperature.Morn,
-				Day = temperature.Day,
-				Evening = temperature.Eve,
-				Night = temperature.Night,
-				Min = temperature.Min,
-				Max = temperature.Max
+				Morning = Round(temperature.Morn),
+				Day = Round(temperature.Day),
+				Evening = Round(temperature.Eve),
+				Night = Round(temperature.Night),
+				Min = Round(temperature.Min),
+				Max = Round(temperature.Max)
 			};
+		}
+
+		private decimal Round(decimal number)
+		{
+			return Math.Round(number, 0);
 		}
 
 		private ICollection<WeatherInfoView> MapHourly(ICollection<WeatherInfo> hourly)
@@ -105,8 +110,8 @@ namespace WeatherService.MapView
 				Date = GetTime(current.Dt),
 				Sunrise = GetTime(current.Sunrise),
 				Sunset = GetTime(current.Sunset),
-				Temperature = current.Temp,
-				FeelsLike = current.FeelsLike,
+				Temperature = Round(current.Temp),
+				FeelsLike = Round(current.FeelsLike),
 				Pressure = current.Pressure,
 				Humidity = current.Humidity,
 				UvIndex = current.Uvi,

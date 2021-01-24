@@ -22,7 +22,7 @@ namespace WeatherService
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-					webBuilder.UseUrls($"http://*:{AppSettings.Settings.WeatherService.Port}");
+					webBuilder.UseUrls($"http://localhost:{AppSettings.Settings.WeatherService.Port}");
                 });
     }
 }

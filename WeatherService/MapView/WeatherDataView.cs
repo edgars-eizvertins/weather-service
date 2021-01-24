@@ -125,7 +125,7 @@ namespace WeatherService.OpenWeather.MapView
 		public DateTime Date { get; set; }
 
 		[JsonPropertyName("precipitation_mm")]
-		public int PrecipitationMm { get; set; } 
+		public decimal PrecipitationMm { get; set; } 
 	}    
 
 	public class RainView: Dictionary<string, decimal> {}
