@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/WeatherService/bin/Debug/net5.0/WeatherService.dll",
+            "program": "${workspaceFolder}/WeatherService/bin/Debug/net6.0/WeatherService.dll",
             "args": [],
             "cwd": "${workspaceFolder}/WeatherService",
             "stopAtEntry": false,

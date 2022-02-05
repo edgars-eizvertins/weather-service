@@ -8,6 +8,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using WeatherService.Base;
 
+//Run using this
+//
+// http://localhost:1984/WeatherForecast
+
 namespace WeatherService
 {
     public class Program

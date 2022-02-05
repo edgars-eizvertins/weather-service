@@ -25,7 +25,7 @@ namespace WeatherService.MapView
 
 		private ICollection<AlertView> MapAlerts(ICollection<Alert> alerts)
 		{
-			return alerts.Select(f => MapAlert(f)).ToArray();
+			return alerts?.Select(f => MapAlert(f)).ToArray();
 		}
 
 		private AlertView MapAlert(Alert alert)
