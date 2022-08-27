@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using WeatherService.Base;
@@ -15,10 +16,12 @@ public class Program
 		CreateHostBuilder(args).Build().Run();
 	}
 
-	public static IHostBuilder CreateHostBuilder(string[] args) =>
-		Host.CreateDefaultBuilder(args)
+	public static IHostBuilder CreateHostBuilder(string[] args) {
+		Console.WriteLine("Hello!");	
+		return Host.CreateDefaultBuilder(args)
 			.ConfigureWebHostDefaults(webBuilder => {
 				webBuilder.UseStartup<Startup>();
 				webBuilder.UseUrls($"http://localhost:{AppSettings.Settings.WeatherService.Port}");
 			});
+	}
 }
