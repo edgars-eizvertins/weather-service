@@ -8,15 +8,13 @@ Create image
 docker build -t weather-service:latest .
 
 Run image
-docker run -p 1984:1984 --name weather weather-service
-docker run -p 1984:1984 weather-service
+docker run -p 1984:1984 weather-service open_weather_key_is_here
 
 Run image:
-docker run --network host -d weather-service
+docker run --network host -d weather-service open_weather_key_is_here
 
 Stop container
 docker stop
 
 Remove image
-docker rm weather
-
+docker rm weather-service
