@@ -8,6 +8,8 @@ namespace WeatherService.MapView;
 
 public class ViewMapper
 {
+	private const int HoursMax = 12;
+
 	public WeatherDataView Map(WeatherData data)
 	{
 		return new WeatherDataView {
@@ -89,7 +91,7 @@ public class ViewMapper
 
 	private ICollection<WeatherInfoView> MapHourly(ICollection<WeatherInfo> hourly)
 	{
-		return hourly.Select(f => 
+		return hourly.Take(HoursMax).Select(f => 
 			MapWeatherInfo(f)
 		).ToArray();
 	}

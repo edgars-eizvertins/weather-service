@@ -1,5 +1,6 @@
 {
 	"WeatherService": {
+		"Host": "localhost",
 		"Port": "1984",
 		"ApiUrl": "https://api.openweathermap.org/data/2.5/",
 		"AppId": "",
