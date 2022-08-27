@@ -8,7 +8,7 @@ Create image
 docker build -t weather-service:latest .
 
 Run image
-docker run -p 1984:1984 weather-service open_weather_key_is_here
+docker run -p 1984:1984 weather-service open_weather_key_is_here latitude longitude units
 
 Run image:
 docker run --network host -d weather-service open_weather_key_is_here
