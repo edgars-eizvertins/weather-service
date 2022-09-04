@@ -18,3 +18,9 @@ docker stop
 
 Remove image
 docker rm weather-service
+
+Add tag
+docker tag weather-service:latest eeizvertins/weather-service:arm32
+
+Docker push
+docker push eeizvertins/weather-service:arm32
